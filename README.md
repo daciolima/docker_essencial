@@ -91,12 +91,16 @@ docker-compose down
 docker-compose down -v
 # Verificar serviços ativos pelo docker-compose
 docker-compose ps
-# Rodando um comando dentro de um serviço usando o docker-compose
+# Rodando um comando(-c) dentro de um serviço usando o docker-compose
 docker-compose exec db psql -U postgres -c '/l'
-# Executando um script dentro de um serviço usando o docker-compose
-docker-compose exec db psql -U postgres -f /script/check.sql
+# Selecionando um database e realizando select dentro de um serviço usando o docker-compose
+docker-compose exec db psql -U postgres -d email_sender -c 
+# Executando um script(-f) dentro de um serviço usando o docker-compose
+docker-compose exec db psql -U postgres -f /scripts/check.sql
 # Visualiza logs 
 docker-compose logs -f -t 
+# Acessando internamente um container
+docker container exec -it e7cc968b1dd1 /bin/bash
 
 ```
 
